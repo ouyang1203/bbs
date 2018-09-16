@@ -1,0 +1,16 @@
+create database if not exists bbs_user;
+use bbs_user;
+create table if not exists user_info(
+user_id int primary key auto_increment,
+user_account varchar(50) not null unique,
+user_name varchar(100) not null,
+user_pwd varchar(50) not null,
+user_email varchar(50),
+user_phone varchar(20),
+user_desc text,
+user_birth timestamp);
+
+insert into user_info (user_account,user_name,user_pwd)values('test','测试','12345678');
+insert into user_info (user_account,user_name,user_pwd)values('test1','测试1','12345678');
+
+create user 'bbs_user'@'%' IDENTIFIED BY '12345678';
