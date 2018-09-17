@@ -22,6 +22,20 @@ import com.alibaba.druid.pool.DruidDataSource;
  *@token获取页面 http://localhost:1010/uaa/postOauth2Token?client_id=client&client_secret=secret&redirect_uri=https://www.baidu.com&code=Y0TTIE
  *@继承 WebMvcConfigurerAdapter实现自定义登录页面和授权确认页面
  * */
+/**
+AuthorizationEndpoint 根据用户认证获得授权码，有下面两个方法：
+	/oauth/authorize - GET
+	/oauth/authorize - POST
+	TokenEndpoint 客户端根据授权码获取 token 
+	/oauth/token - GET
+	/oauth/token - POST
+	CheckTokenEndpoint 可以用于远程解码令牌 
+	/oauth/check_token
+	WhitelabelApprovalEndpoint 显示授权服务器的确认页。 
+	/oauth/confirm_access
+	WhitelabelErrorEndpoint 显示授权服务器的错误页 
+	/oauth/error
+ * */
 @SpringBootApplication
 @EnableAuthorizationServer
 @EnableFeignClients

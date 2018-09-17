@@ -17,7 +17,10 @@ autoapprove VARCHAR(128)
 insert into oauth_client_details (client_id,scope,client_secret,authorized_grant_types,web_server_redirect_uri)values ('client','app','secret','authorization_code','https://www.baidu.com');
 
 insert into oauth_client_details (client_id,scope,client_secret,authorized_grant_types,web_server_redirect_uri)values ('client2','app','secret','authorization_code','http://localhost:7777/api-user/user/index');
-insert into oauth_client_details (client_id,scope,client_secret,authorized_grant_types,web_server_redirect_uri)values ('news','app','new_secret','authorization_code','http://localhost:3000/');
+insert into oauth_client_details (client_id,scope,resource_ids,client_secret,authorized_grant_types,web_server_redirect_uri)values ('news','app','news','new_secret','authorization_code','http://localhost:3000/');
+insert into oauth_client_details (client_id,scope,resource_ids,client_secret,authorized_grant_types,web_server_redirect_uri)values ('module','app','module','module_secret','authorization_code','http://localhost:3001/');
+insert into oauth_client_details (client_id,scope,resource_ids,client_secret,authorized_grant_types,web_server_redirect_uri)values ('module2','app','module','module_secret','authorization_code','http://192.168.1.56:3001/');
+insert into oauth_client_details (client_id,scope,resource_ids,client_secret,authorized_grant_types,web_server_redirect_uri)values ('scf','app','module','scf','authorization_code','http://192.168.1.73:9003/hello?name=33');
 
 create table if not exists oauth_client_token (
 token_id VARCHAR(128),

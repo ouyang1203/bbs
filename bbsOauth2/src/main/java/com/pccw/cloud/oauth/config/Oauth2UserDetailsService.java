@@ -27,6 +27,10 @@ public class Oauth2UserDetailsService implements UserDetailsService{
 	private User mockUser(String name) {
 		Collection<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
 		authorities.add(new SimpleGrantedAuthority("admin"));
+		if("test1".equals(name)) {
+			//用于测试不同用户权限
+			authorities.add(new SimpleGrantedAuthority("other"));
+		}
 		//查询用户中心的用户密码
 		String pwd = userService.findUserPwdByAccount(name);
 		User user = new User(name,pwd,authorities);

@@ -170,5 +170,6 @@
     <module>bbsUser</module>
     <module>bbsZuul</module>
     <module>bbsNews</module>
+    <module>bbsModule</module>
   </modules>
 </project>
