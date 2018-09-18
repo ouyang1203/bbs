@@ -3,6 +3,8 @@ package com.pccw.cloud.oauth;
 
 import java.security.KeyPair;
 import java.security.interfaces.RSAPublicKey;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +15,7 @@ import org.springframework.security.jwt.JwtHelper;
 import org.springframework.security.rsa.crypto.KeyStoreKeyFactory;
 
 import com.sun.jersey.core.util.Base64;
+import com.sun.org.apache.xml.internal.security.algorithms.SignatureAlgorithm;
 
 /**
  * Unit test for simple App.
@@ -31,9 +34,14 @@ public class AppTest
     }
 	
     public static void main(String[] args) {
-		String token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MzY5NzA4MjEsInVzZXJfbmFtZSI6InRlc3QiLCJhdXRob3JpdGllcyI6WyJhZG1pbiJdLCJqdGkiOiI0YjVlNTRhMS00YTZkLTQxM2UtYmZhMy02ZDQ2MzJjNTljZjQiLCJjbGllbnRfaWQiOiJjbGllbnQiLCJzY29wZSI6WyJhcHAiXX0.ULVQoCmmq0RLGuoKcTT9D_st8YTsaos_Wew6aEjYjKfkTgCCvLP0lzzySwlKRQreOc__-zfmswYADSBJTQ7FVZUnnlERg6RaxGA7KlZori3N1bvs32Ix7oB49AovlqRWRFC4jdsuV15krGTu7HfexYXz7D60BOlY2WoNnzDAv_W7tMJIlCsC3MXRuEmiLSm6wIQ7M5khL_LJniUSVQuesDUy-JrgwqZ9Je-z2cQt7-t7w456qG66BVuFI3M8rmdPX8hiLpFO6jRomRAA0c_Xruy_EEFQuBiYjqzO3cIqkrATjx9LgaxfunIKzeSxkq6H8WF8Xl4Bx2K6kAmMSlCanQ";
+		String token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsienV1bCJdLCJ1c2VyX25hbWUiOiJ0ZXN0MSIsInNjb3BlIjpbImFwcCJdLCJleHAiOjE1MzcyODM3MjEsImF1dGhvcml0aWVzIjpbImFkbWluIiwib3RoZXIiXSwianRpIjoiMTk1MmE4NGEtMDk4Ny00Nzg5LTg5YmMtYzQ5NWZjYTU4MDI5IiwiY2xpZW50X2lkIjoienV1bCJ9.GrivdCE7OFR_JvAc50B6GPUj99wMbMGWMFdaK6-LBZSd_00rgrONwQZuvJGTsfXmTtNaG_V03gfWXBu2lQyPeBmY6nCazfKp1buqn6EBdRCZdnsale__MTaykNWwaFaAf7cJKFKwQm4OtDDJ2YyblK1yWa_msCQfuBkT-I5wOsAiXrjG6r7suBiW951WFZZsDS1wd0N0gkq_yyo7slzcT4h5xQMEAAfVrEngb-hVghd8Je8Ys3CTYxXwFKGlsjwEHpjszbyxqTNuymX8RMFzSpRMbJKZBF-WS_Z8YJwol3-JA94wemWdN0B1TLp2vNxsfa3XC4sbihMaoWATuAhyZg";
 		Jwt jwt = JwtHelper.decode(token); 
+		long millis = 1537283721;
+		Calendar cal = Calendar.getInstance();
+		cal.setTimeInMillis(millis);
+		Date date = cal.getTime();
 		log_.info("jwt token info is {}",jwt.toString());
+		log_.info("token exp at {}",date.toLocaleString());
 	}
     
 	/**获取公钥*/

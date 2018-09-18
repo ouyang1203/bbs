@@ -31,7 +31,7 @@ public class UserController {
 	@RequestMapping(value="/index")
 	public String index(){
 		log_.info("index method invoke");
-		return "index page";
+		return "user index page";
 	}
 	/**
 	 * 此方法用于Oauth2认证服务器获取用户信息

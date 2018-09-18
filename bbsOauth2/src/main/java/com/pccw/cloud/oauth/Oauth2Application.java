@@ -35,6 +35,8 @@ AuthorizationEndpoint 根据用户认证获得授权码，有下面两个方法�
 	/oauth/confirm_access
 	WhitelabelErrorEndpoint 显示授权服务器的错误页 
 	/oauth/error
+//校验token是否合法
+http://localhost:1010/uaa/oauth/check_token?token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsienV1bCJdLCJ1c2VyX25hbWUiOiJ0ZXN0MSIsInNjb3BlIjpbImFwcCJdLCJleHAiOjE1MzcyODM3MjEsImF1dGhvcml0aWVzIjpbImFkbWluIiwib3RoZXIiXSwianRpIjoiMTk1MmE4NGEtMDk4Ny00Nzg5LTg5YmMtYzQ5NWZjYTU4MDI5IiwiY2xpZW50X2lkIjoienV1bCJ9.GrivdCE7OFR_JvAc50B6GPUj99wMbMGWMFdaK6-LBZSd_00rgrONwQZuvJGTsfXmTtNaG_V03gfWXBu2lQyPeBmY6nCazfKp1buqn6EBdRCZdnsale__MTaykNWwaFaAf7cJKFKwQm4OtDDJ2YyblK1yWa_msCQfuBkT-I5wOsAiXrjG6r7suBiW951WFZZsDS1wd0N0gkq_yyo7slzcT4h5xQMEAAfVrEngb-hVghd8Je8Ys3CTYxXwFKGlsjwEHpjszbyxqTNuymX8RMFzSpRMbJKZBF-WS_Z8YJwol3-JA94wemWdN0B1TLp2vNxsfa3XC4sbihMaoWATuAhyZg
  * */
 @SpringBootApplication
 @EnableAuthorizationServer

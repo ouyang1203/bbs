@@ -35,7 +35,7 @@ public class ZuulFilterBbs extends ZuulFilter {
 		HttpServletRequest request = ctx.getRequest();
 		String uri = request.getRequestURL().toString();
 		log_.info("current request uri is {},request method is {}",uri,request.getMethod());
-		Object accessToken = request.getParameter("accessToken");
+		Object accessToken = request.getParameter("access_token");
 		if(null==accessToken) {
 			log_.info("token is empty");
 			ctx.setSendZuulResponse(false);

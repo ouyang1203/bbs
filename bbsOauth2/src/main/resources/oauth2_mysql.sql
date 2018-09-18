@@ -21,6 +21,7 @@ insert into oauth_client_details (client_id,scope,resource_ids,client_secret,aut
 insert into oauth_client_details (client_id,scope,resource_ids,client_secret,authorized_grant_types,web_server_redirect_uri)values ('module','app','module','module_secret','authorization_code','http://localhost:3001/');
 insert into oauth_client_details (client_id,scope,resource_ids,client_secret,authorized_grant_types,web_server_redirect_uri)values ('module2','app','module','module_secret','authorization_code','http://192.168.1.56:3001/');
 insert into oauth_client_details (client_id,scope,resource_ids,client_secret,authorized_grant_types,web_server_redirect_uri)values ('scf','app','module','scf','authorization_code','http://192.168.1.73:9003/hello?name=33');
+insert into oauth_client_details (client_id,scope,resource_ids,client_secret,authorized_grant_types,web_server_redirect_uri)values ('zuul','app','zuul','zuul','authorization_code','http://localhost:7777/');
 
 create table if not exists oauth_client_token (
 token_id VARCHAR(128),

@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -21,6 +22,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
+import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
@@ -29,6 +31,9 @@ import org.springframework.security.rsa.crypto.KeyStoreKeyFactory;
 
 @Configuration
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter{
+	@Value("${spring.cloud.oauth2.token.validity.secends}")
+	private Integer AccessTokenValiditySeconds;
+	
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
@@ -56,10 +61,16 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     }
     @Override // 配置框架应用上述实现
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.authenticationManager(authenticationManager);
+    	TokenStore tokenStore = redisTokenStore();
         endpoints.userDetailsService(oauth2UserDetailsService);
-        endpoints.tokenStore(redisTokenStore());
-        endpoints.accessTokenConverter(accessTokenConverter());
+        DefaultTokenServices tokenServices = new DefaultTokenServices();
+        tokenServices.setTokenStore(tokenStore);
+        tokenServices.setSupportRefreshToken(true);
+        tokenServices.setTokenEnhancer(accessTokenConverter());
+        tokenServices.setAccessTokenValiditySeconds(AccessTokenValiditySeconds);
+        tokenServices.setClientDetailsService(clientDetails());
+        tokenServices.setAuthenticationManager(authenticationManager);
+        endpoints.tokenServices(tokenServices);
     }
     @Bean
     public JwtAccessTokenConverter accessTokenConverter(){
