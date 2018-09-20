@@ -9,11 +9,11 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Order(10)
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
+	
 	@Autowired
     private Oauth2UserDetailsService oauth2UserDetailsService;
 	
@@ -28,9 +28,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		http.formLogin().loginPage("/login").permitAll()
 			// 登出页
 			.and().logout().logoutUrl("/logout").logoutSuccessUrl("/")
-			.and().authorizeRequests().antMatchers("/health", "/css/**")
+			.and().authorizeRequests().antMatchers("/health", "/css/**").permitAll()
 			// 其余所有请求全部需要鉴权认证
-			.anonymous().and().authorizeRequests().anyRequest().authenticated();
+			.and().authorizeRequests().anyRequest().authenticated();
 			//由于使用的是JWT，我们这里不需要csrf
 //			.and().csrf().disable();
 	}
