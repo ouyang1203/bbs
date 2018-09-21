@@ -1,6 +1,6 @@
 
-create database if not exists bbs_slor;
-use bbs_slor;
+create database if not exists bbs_solr;
+use bbs_solr;
 create table if not exists product_info(
 product_id int primary key auto_increment,
 product_name varchar(100) not null,
