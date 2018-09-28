@@ -1,13 +1,25 @@
 package com.pccw.cloud.zuul.filter;
 
-import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
+import java.util.UUID;
 
+import javax.servlet.ServletInputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
+
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StreamUtils;
 
+import com.google.gson.JsonObject;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
+import com.netflix.zuul.http.ServletInputStreamWrapper;
 
 /**
 filterType：返回一个字符串代表过滤器的类型，在zuul中定义了四种不同生命周期的过滤器类型，具体如下： 
@@ -35,6 +47,8 @@ public class ZuulFilterBbs extends ZuulFilter {
 		HttpServletRequest request = ctx.getRequest();
 		String uri = request.getRequestURL().toString();
 		log_.info("current request uri is {},request method is {}",uri,request.getMethod());
+		String traceId = UUID.randomUUID().toString().replace("-", "");
+		MDC.put("traceId",traceId);
 		Object accessToken = request.getParameter("access_token");
 		if(null==accessToken) {
 			log_.info("token is empty");
@@ -45,6 +59,36 @@ public class ZuulFilterBbs extends ZuulFilter {
             }catch (Exception e){
             	
             }
+		}
+		try {
+			//给后续请求添加参数
+			InputStream in = request.getInputStream();
+			String body = StreamUtils.copyToString(in, Charset.forName("UTF-8"));
+			if(StringUtils.isBlank(body)){
+			    body = "{}";
+			}
+			JsonObject obj = new JsonObject();
+			obj.addProperty("traceId", traceId);
+			obj.addProperty("accessToken", accessToken.toString());
+			String newBody = obj.toString();
+			log_.info("zuul newBody is {}",newBody);
+			final byte[] reqBodyBytes = newBody.getBytes();
+			ctx.setRequest(new HttpServletRequestWrapper(request){    
+			    @Override
+			    public ServletInputStream getInputStream() throws IOException {
+			      return new ServletInputStreamWrapper(reqBodyBytes);
+			    }
+			    @Override
+			    public int getContentLength() {
+			      return reqBodyBytes.length;
+			    }
+			    @Override
+			    public long getContentLengthLong() {
+			      return reqBodyBytes.length;
+			    }
+			  });
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		log_.info("ok");
 		return null;

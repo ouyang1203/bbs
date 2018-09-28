@@ -1,5 +1,7 @@
 package com.pccw.cloud.user.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +31,10 @@ public class UserController {
 	}
 	@ResponseBody
 	@RequestMapping(value="/index")
-	public String index(){
+	public String index(HttpServletRequest request){
 		log_.info("index method invoke");
-		return "user index page";
+		userService.testLog();
+		return "user index page ";
 	}
 	/**
 	 * 此方法用于Oauth2认证服务器获取用户信息

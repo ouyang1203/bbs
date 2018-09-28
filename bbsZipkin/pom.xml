@@ -8,13 +8,12 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <groupId>com.pccw.cloud</groupId>
-  <artifactId>bbsSolr</artifactId>
+  <artifactId>bbsZipkin</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>bbsSolr</name>
+  <name>bbsZipkin</name>
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <mmseg4j.version>1.9.1</mmseg4j.version>
   </properties>
   <dependencies>
     <dependency>
@@ -22,27 +21,5 @@
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
-    <dependency>
-	 <groupId>org.apache.solr</groupId>
-	 <artifactId>solr-solrj</artifactId>
-	 <version>7.4.0</version>
-	</dependency>
-	<!-- 	mmseg4j中文分词器 -->
-	<dependency>
-	    <groupId>com.chenlb.mmseg4j</groupId>
-	    <artifactId>mmseg4j-solr</artifactId>
-	    <version>${mmseg4j.version}</version>
-	</dependency>
-	<dependency>
-	    <groupId>com.chenlb.mmseg4j</groupId>
-	    <artifactId>mmseg4j-analysis</artifactId>
-	    <version>${mmseg4j.version}</version>
-	</dependency>
-	<dependency>
-	    <groupId>com.chenlb.mmseg4j</groupId>
-	    <artifactId>mmseg4j-core</artifactId>
-	    <version>${mmseg4j.version}</version>
-	</dependency>
-	<!-- 	mmseg4j中文分词器 -->
   </dependencies>
 </project>

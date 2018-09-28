@@ -1,11 +1,15 @@
 package com.pccw.cloud.user.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pccw.cloud.user.mapper.UserMapper;
 @Service
 public class UserService {
+	private Logger log_ = LoggerFactory.getLogger(UserService.class);
+	
 	@Autowired
 	UserMapper userMapper;
 	
@@ -15,5 +19,9 @@ public class UserService {
 	
 	public String findUserPwdByAccount(String userAccount){
 		return userMapper.findUserPwdByAccount(userAccount);
+	}
+	
+	public void testLog() {
+		log_.info("test service loging");
 	}
 }
