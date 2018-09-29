@@ -179,14 +179,15 @@
 	  </plugins>
   </build>
   <modules>
-	  <module>bbsEurzka</module>
-	  <module>bbsConfig</module>
-    <module>bbsOauth2</module>
-    <module>bbsUser</module>
-    <module>bbsZuul</module>
-    <module>bbsNews</module>
-    <module>bbsModule</module>
-    <module>bbsSolr</module>
-    <module>bbsZipkin</module>
+	<module>bbsEurzka</module>
+	<module>bbsConfig</module>
+	<module>bbsOauth2</module>
+	<module>bbsUser</module>
+	<module>bbsZuul</module>
+	<module>bbsNews</module>
+	<module>bbsModule</module>
+	<module>bbsSolr</module>
+	<module>bbsZipkin</module>
+	<module>bbsUser2</module>
   </modules>
 </project>

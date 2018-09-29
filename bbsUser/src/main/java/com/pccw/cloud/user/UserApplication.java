@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -18,6 +19,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 
 @MapperScan("com.pccw.cloud.user.mapper")
 @EnableDiscoveryClient
+@EnableFeignClients
 @SpringBootApplication
 public class UserApplication {
 	//从springConfing配置中心获取配置信息

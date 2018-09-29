@@ -26,4 +26,10 @@ private Logger log_ = LoggerFactory.getLogger(GataWayAController.class);
 		log_.info("current token is {} \n current user is {} \t current role is {}",token,name,roles);
 		return "zuul index page ,current user is :"+name;
 	}
+	@ResponseBody
+	@RequestMapping(value="/testZuulLog")
+	public String testZuulLog() {
+		log_.info("test log info");
+		return "log";
+	}
 }

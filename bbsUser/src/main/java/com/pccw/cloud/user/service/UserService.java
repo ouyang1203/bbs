@@ -12,6 +12,9 @@ public class UserService {
 	private Logger log_ = LoggerFactory.getLogger(UserService.class);
 	
 	@Autowired
+	User2Service user2Service;
+	
+	@Autowired
 	UserMapper userMapper;
 	
 	public Integer login(String userAccount,String password){
@@ -24,6 +27,7 @@ public class UserService {
 	
 	public void testLog() {
 		log_.info("test service loging");
+		user2Service.user2Index();
 		try {
 			throw new RuntimeException("测试异常打印");
 		} catch (Exception e) {
