@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.pccw.cloud.user.logger.Logs;
 import com.pccw.cloud.user.mapper.UserMapper;
 @Service
 public class UserService {
@@ -23,5 +24,10 @@ public class UserService {
 	
 	public void testLog() {
 		log_.info("test service loging");
+		try {
+			throw new RuntimeException("测试异常打印");
+		} catch (Exception e) {
+			Logs.error(e);
+		}
 	}
 }
