@@ -24,5 +24,10 @@
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
+    <!-- sleuth配置 -->
+	<dependency>
+	    <groupId>org.springframework.cloud</groupId>
+	    <artifactId>spring-cloud-starter-sleuth</artifactId>
+	</dependency>
   </dependencies>
 </project>

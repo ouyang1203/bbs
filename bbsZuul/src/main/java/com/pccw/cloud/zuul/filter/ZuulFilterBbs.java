@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
 import org.apache.commons.lang.StringUtils;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StreamUtils;
 
-import com.google.gson.JsonObject;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.http.ServletInputStreamWrapper;
@@ -67,9 +67,9 @@ public class ZuulFilterBbs extends ZuulFilter {
 			if(StringUtils.isBlank(body)){
 			    body = "{}";
 			}
-			JsonObject obj = new JsonObject();
-			obj.addProperty("traceId", traceId);
-			obj.addProperty("accessToken", accessToken.toString());
+			JSONObject obj = new JSONObject();
+			obj.put("traceId", traceId);
+			obj.put("accessToken", accessToken.toString());
 			String newBody = obj.toString();
 			log_.info("zuul newBody is {}",newBody);
 			final byte[] reqBodyBytes = newBody.getBytes();

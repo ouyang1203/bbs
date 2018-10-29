@@ -8,13 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
+import org.json.JSONObject;
 import org.slf4j.MDC;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 /**
  * 定义日志拦截器
@@ -43,8 +41,8 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
 			InputStream in = request.getInputStream();
 			String body = StreamUtils.copyToString(in, Charset.forName("UTF-8"));
 			if(StringUtils.isNotBlank(body)){
-				JsonObject json = new JsonParser().parse(body).getAsJsonObject();
-				traceId = json.get("traceId").getAsString();
+				JSONObject json = new JSONObject(body);
+				traceId = json.getString("traceId");
 			}
 
 		} catch (IOException e) {

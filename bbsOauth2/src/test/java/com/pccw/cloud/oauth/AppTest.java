@@ -15,7 +15,6 @@ import org.springframework.security.jwt.JwtHelper;
 import org.springframework.security.rsa.crypto.KeyStoreKeyFactory;
 
 import com.sun.jersey.core.util.Base64;
-import com.sun.org.apache.xml.internal.security.algorithms.SignatureAlgorithm;
 
 /**
  * Unit test for simple App.
